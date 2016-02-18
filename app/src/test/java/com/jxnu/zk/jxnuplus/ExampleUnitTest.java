@@ -1,4 +1,4 @@
-package com.mokiextra.jxnuplus;
+package com.jxnu.zk.jxnuplus;
 
 import org.junit.Test;
 
