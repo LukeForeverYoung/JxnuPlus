@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">JxnuPlus</string>
+    <string name="title_activity_home_page">HomePageActivity</string>
 </resources>

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/mainLayout"
-    tools:context="com.jxnu.zk.jxnuplus.MainActivity">
+    tools:context=".LoginPageActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,14 +20,35 @@
             android:text="江西师大教务在线" />
 
     </LinearLayout>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Layout1"
+        android:id="@+id/Radio"
+        android:orientation="horizontal">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/studentR"
+            android:textSize="20dp"
+            android:layout_weight="1"
+            android:text="学生"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/teacherR"
+            android:textSize="20dp"
+            android:layout_weight="1"
+            android:text="教师"/>
+    </RadioGroup>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/Layout2"
-        android:layout_below="@id/Layout1">
+        android:layout_below="@id/Radio">
 
         <TextView
-            android:layout_width="80"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:id="@+id/title1"
             android:textSize="20dp"
@@ -38,7 +59,7 @@
             android:layout_toRightOf="@id/title1"
             android:layout_alignTop="@id/title1"
             android:id="@+id/userName"
-            android:hint="请输入学号"/>
+            android:hint="请输入用户名"/>
 
     </RelativeLayout>
     <RelativeLayout
@@ -48,7 +69,7 @@
         android:layout_below="@id/Layout2">
 
         <TextView
-            android:layout_width="80"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:id="@+id/title2"
             android:textSize="20dp"
@@ -59,6 +80,7 @@
             android:layout_toRightOf="@id/title2"
             android:layout_alignTop="@id/title2"
             android:id="@+id/passWord"
+            android:inputType="textPassword"
             android:hint="请输入密码"/>
 
     </RelativeLayout>
