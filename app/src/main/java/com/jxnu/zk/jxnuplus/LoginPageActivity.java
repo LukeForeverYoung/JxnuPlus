@@ -30,7 +30,7 @@ public class LoginPageActivity extends AppCompatActivity {
     private String mPsw;
     private String mType;
     private int typeflag = 0;
-    private String baseUrl = "http://jwc.jxnu.edu.cn/";
+    private String baseUrl = "http://jwc.jxnu.edu.cn/Default_Login.aspx";
     private HttpURLConnection urlConn = null;
 
     @Override
@@ -52,13 +52,13 @@ public class LoginPageActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (mStudentR.getId() == checkedId) {
                     typeflag = 0;
-                    mUsername.setText("学号");
-                    mUserName.setHint("请输入学号:");
+                    mUsername.setText("学号:");
+                    mUserName.setHint("请输入学号");
                     mType = "Student";
                 } else if (mTeacherR.getId() == checkedId) {
                     typeflag = 1;
-                    mUsername.setText("工号");
-                    mUserName.setHint("请输入工号:");
+                    mUsername.setText("工号:");
+                    mUserName.setHint("请输入工号");
                     mType = "Teacher";
                 }
             }
@@ -135,35 +135,35 @@ public class LoginPageActivity extends AppCompatActivity {
                     urlConn.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
                     // 连接，从postUrl.openConnection()至此的配置必须要在connect之前完成，
                     // 要注意的是connection.getOutputStream会隐含的进行connect。
-                    urlConn.setRequestProperty("User-Agent","Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET CLR 1.1.4322; .NET4.0C; .NET4.0E)");
+                    urlConn.setRequestProperty("User-Agent","Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.82 Safari/537.36");
                     urlConn.setRequestProperty("Accept-Language","zh-CN");
                     urlConn.setRequestProperty("Accept-Encoding","gzip, deflate");
+                    urlConn.setRequestProperty("Connection","keep-alive");
+                    urlConn.setRequestProperty("Content-Length",String.valueOf(4105));
                     urlConn.connect();
                     //DataOutputStream流
                     DataOutputStream out = new DataOutputStream(urlConn.getOutputStream());
                     //要上传的参数
                     String param = new String();
-                    if(typeflag == 1){
+                    if(typeflag == 0){
                         param = "rblUserType" + mType +
                                 "&StuNum" +mNum +
                                 "&TeaNum" + " " +
                                 "&Password" + mPsw +
                                 "&login" + "登录";
-                    }else if(typeflag == 2){
+                    }else if(typeflag == 1){
                         param = "rblUserType" + mType +
                                 "&StuNum" +" " +
                                 "&TeaNum" + mNum +
                                 "&Password" + mPsw +
                                 "&login" + "登录";
                     }
-
-
                     out.writeBytes(param);
                     //刷新、关闭
                     out.flush();
-                    out.close();
-                    if(urlConn.getResponseCode() == 200)
-                        Log.d("反馈", "onClick: 登录成功");
+                    // out.close();
+//                    if(urlConn.getResponseCode() == 200)
+                        Log.d("反馈",String.valueOf(urlConn.getResponseCode()));
 
                 }catch(Exception e){
                     e.printStackTrace();
